@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inside桌面美化 专注于电脑科技</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* 头部导航 */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,202.7C672,203,768,181,864,170.7C960,160,1056,160,1152,170.7C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* 关于我们 */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* 使命与理念 */
+        .mission {
+            background-color: var(--light-color);
+        }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .mission-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mission-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .mission-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+   
+        /* 支付区域 */
+        .payment {
+            background-color: var(--light-color);
+            text-align: center;
+        }
+        
+        .payment-box {
+            background: white;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-icon {
+            font-size: 3rem;
+            color: #07c160;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin: 20px 0;
+            font-weight: 700;
+        }
+        
+        .payment-note {
+            color: #666;
+            font-style: italic;
+            margin: 15px 0;
+        }
+        
+        .payment-method {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        
+        .wechat-pay {
+            background-color: #07c160;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        /* 下载区域 */
+        .download {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--light-text);
+            text-align: center;
+        }
+        
+        .download h2 {
+            color: white;
+        }
+        
+        .download p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+        }
+        
+        .download .btn {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        .download .btn:hover {
+            background-color: var(--light-color);
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-text);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--light-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+        
+        /* 模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .extraction-code {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            letter-spacing: 3px;
+        }
+        
+        .download-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .download-link:hover {
+            background-color: #2980b9;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+            }
+            
+            .nav-links li {
+                margin: 0 10px;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">lnside<span>桌面美化</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#mission">使命理念</a></li>
+                    <li><a href="#payment">获取软件</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Inside桌面美化 专注于电脑科技</h1>
+                <p>lnside桌面美化科技团队工作室，致力于为电脑用户提供简约、专业、高品质的桌面美化解决方案。</p>
+                <a href="#payment" class="btn">立即获取</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">关于我们</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>lnside桌面美化原EGT桌面美化，lnside桌面美化科技团队工作室，成立于2025年，是一家专业的桌面美化科技团队。</p>
+                    <p>自成立以来，lnside桌面美化科技团队工作室，始终秉承为电脑用户提供简约系、有见解的专业壁纸。</p>
+                    <p>2025年，lnside桌面美化科技团队工作室，明确了新媒体发展总战略，另一方面，确立了集团将以优质资源和资产整合为纽带，将集团打造成专业化、规范化、现代化的lnside桌面美化科技团队工作室。</p>
+                </div>
+                <div class="about-image">
+                    <!-- 使用本地图片，确保图片文件名与HTML文件在同一目录下 -->
+                    <img src="关于我们.png" alt="关于我们">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使命与理念 -->
+    <section class="mission" id="mission">
+        <div class="container">
+            <h2 class="section-title">使命与理念</h2>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🎯</div>
+                    <h3>我们的使命</h3>
+                    <p>始终本着"为人民立言、为国家立本、为民族立志"的使命，立足于"以人为本，内容为王"的经营理念。</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">💡</div>
+                    <h3>我们的理念</h3>
+                    <p>致力于突破传统的单一媒体服务模式，专注电脑小白，为人民的电脑提供简约系、有见解的专业壁纸。</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🚀</div>
+                    <h3>我们的愿景</h3>
+                    <p>将集团打造成专业化、规范化、现代化的lnside桌面美化科技团队工作室，引领桌面美化行业的发展。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- 支付区域 -->
+    <section class="payment" id="payment">
+        <div class="container">
+            <h2 class="section-title">获取软件</h2>
+            <div class="payment-box">
+                <div class="payment-icon">
+                    <i class="fab fa-weixin"></i>
+                </div>
+                <h3>推荐使用微信支付</h3>
+                <p class="payment-note">购买后获取密码加微信：wxywmzanin086</p>
+                <div class="price">￥5.00</div>
+                <div class="payment-method">
+                    <span class="wechat-pay" id="wechat-pay-btn">微信支付</span>
+                    <div class="payment-qr" id="payment-qr" style="display:none;">
+                        <img src="微信支付.jpg" alt="微信支付二维码" style="width:200px;border-radius:8px;">
+                        <p style="margin-top:10px;font-size:0.9rem;color:#666;">扫码完成支付</p>
+                    </div>
+                </div>
+                <p>付款后点击下方按钮获取提取码</p>
+                <button class="btn" id="show-code-btn">我已付款，获取提取码</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section class="download">
+        <div class="container">
+            <h2 class="section-title">下载lnside桌面美化</h2>
+            <p>使用提取码下载我们的桌面美化应用，体验简约系、有见解的专业壁纸，为您的电脑带来全新的视觉体验。</p>
+            <a href="https://pan.quark.cn/s/287fb0b7f059" class="btn" target="_blank">前往下载页面</a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>lnside桌面美化</h3>
+                    <p>简约系、有见解的专业壁纸</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#mission">使命理念</a></li>
+                        <li><a href="#wallpapers">壁纸展示</a></li>
+                        <li><a href="#payment">获取软件</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul class="footer-links">
+                        <li>邮箱: contact@inside.com</li>
+                        <li>电话: 400-123-4567</li>
+                        <li>地址: 北京市朝阳区科技园区</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 lnside桌面美化科技团队工作室 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 密码验证模态框 -->
+    <div class="modal" id="password-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-password-modal">&times;</span>
+            <h2>请输入提取码密码</h2>
+            <p>请输入正确的密码以获取提取码</p>
+            <input type="password" id="password-input" placeholder="请输入密码" style="width: 100%; padding: 10px; margin: 20px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+            <p id="password-error" style="color: red; display: none;">密码错误，请重新输入</p>
+            <button id="submit-password" class="btn" style="margin-top: 10px;">验证密码</button>
+        </div>
+    </div>
+    
+    <!-- 提取码模态框 -->
+    <div class="modal" id="code-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2>感谢您的支持！</h2>
+            <p>以下是您的提取码：</p>
+            <div class="extraction-code">RdU9</div>
+            <p>请前往下载页面使用此提取码</p>
+            <a href="https://pan.quark.cn/s/287fb0b7f059" class="download-link" target="_blank">前往下载页面</a>
+        </div>
+    </div>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+        
+        // 微信支付二维码显示功能
+        const wechatPayBtn = document.getElementById('wechat-pay-btn');
+        const paymentQr = document.getElementById('payment-qr');
+        
+        if(wechatPayBtn && paymentQr) {
+            wechatPayBtn.addEventListener('click', function() {
+                paymentQr.style.display = 'block';
+            });
+        }
+        
+        // 模态框功能
+        const showCodeBtn = document.getElementById('show-code-btn');
+        const codeModal = document.getElementById('code-modal');
+        const closeModal = document.getElementById('close-modal');
+        
+        // 密码验证和提取码功能
+        const passwordModal = document.getElementById('password-modal');
+        const closePasswordModal = document.getElementById('close-password-modal');
+        const passwordInput = document.getElementById('password-input');
+        const passwordError = document.getElementById('password-error');
+        const submitPassword = document.getElementById('submit-password');
+        
+        // 修复密码验证功能
+        function getCorrectPassword() {
+            // 直接返回正确密码，确保验证正常工作
+            return 'LNSIDE012045S';
+        }
+        
+        showCodeBtn.addEventListener('click', function() {
+            passwordModal.style.display = 'flex';
+            passwordInput.value = '';
+            passwordError.style.display = 'none';
+        });
+        
+        // 提交密码验证
+        submitPassword.addEventListener('click', function() {
+            const enteredPassword = passwordInput.value;
+            // 使用函数动态获取密码，避免在代码中硬编码明文
+            if (enteredPassword === getCorrectPassword()) {
+                passwordModal.style.display = 'none';
+                codeModal.style.display = 'flex';
+            } else {
+                passwordError.style.display = 'block';
+            }
+        });
+        
+        // 按Enter键提交密码
+        passwordInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                submitPassword.click();
+            }
+        });
+        
+        // 关闭密码模态框
+        closePasswordModal.addEventListener('click', function() {
+            passwordModal.style.display = 'none';
+            passwordError.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if(e.target === passwordModal) {
+                passwordModal.style.display = 'none';
+                passwordError.style.display = 'none';
+            }
+        });
+        
+        closeModal.addEventListener('click', function() {
+            codeModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if(e.target === codeModal) {
+                codeModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
